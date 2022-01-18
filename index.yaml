@@ -1,0 +1,8 @@
+id: github.com/cloud-native-toolkit/terraform-gitops-db2
+name: gitops-db2
+type: gitops
+description: Module to populate a gitops repo with the resources to provision db2
+tags:
+  - tools
+  - gitops
+versions: []
