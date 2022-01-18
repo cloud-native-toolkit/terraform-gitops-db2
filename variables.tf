@@ -78,3 +78,28 @@ variable "server_name" {
   description = "The name of the server"
   default     = "default"
 }
+
+variable "catalog" {
+  type        = string
+  description = "The catalog source that should be used to deploy the operator"
+  default     = "ibm-db2uoperator-catalog"
+}
+
+variable "catalog_namespace" {
+  type        = string
+  description = "The namespace where the catalog has been deployed"
+  default     = "openshift-marketplace"
+}
+
+variable "channel" {
+  type        = string
+  description = "The channel that should be used to deploy the operator"
+  default     = "v1.1"
+}
+
+variable "platform_navigator_name" {
+  type        = string
+  description = "The name of the platform navigator instance"
+  default     = ""
+}
+

@@ -1,16 +1,31 @@
 locals {
-  name          = "my-module"
+  name          = "ibm-db2u-operator"
   bin_dir       = module.setup_clis.bin_dir
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
-  service_url   = "http://${local.name}.${var.namespace}"
-  values_content = {
-  }
   layer = "services"
-  type  = "base"
+  type  = "operators"
   application_branch = "main"
-  namespace = var.namespace
   layer_config = var.gitops_config[local.layer]
+    values_content = {
+      "ibm-db2u-operator" = {
+        subscriptions = {
+          ibmdb2u = {
+            name = "ibm-db2u"
+            subscription = {
+              channel = var.channel
+              installPlanApproval = "Automatic"
+              name = "db2u-operator"
+              source = var.catalog
+              sourceNamespace = var.catalog_namespace
+            }
+          }
+        }
+      }
+  }
+  values_file = "values-${var.server_name}.yaml"
 }
+
+
 
 module setup_clis {
   source = "github.com/cloud-native-toolkit/terraform-util-clis.git"
