@@ -50,8 +50,8 @@ module "db2u" {
   gitops_config = module.gitops.gitops_config
   git_credentials = module.gitops.git_credentials
   server_name = module.gitops.server_name
-  catalog = module.cp_catalogs.catalog_ibmoperators
-  platform_navigator_name = module.cp_platform_navigator.name
+  namespace = module.gitops_namespace.name
+  kubeseal_cert = module.gitops.sealed_secrets_cert
 }
 ```
 
