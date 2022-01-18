@@ -6,21 +6,21 @@ locals {
   type  = "operators"
   application_branch = "main"
   layer_config = var.gitops_config[local.layer]
-    values_content = {
-      "ibm-db2u-operator" = {
-        subscriptions = {
-          ibmdb2u = {
-            name = "ibm-db2u"
-            subscription = {
-              channel = var.channel
-              installPlanApproval = "Automatic"
-              name = "db2u-operator"
-              source = var.catalog
-              sourceNamespace = var.catalog_namespace
-            }
+  values_content = {
+    "ibm-db2u-operator" = {
+      subscriptions = {
+        ibmdb2u = {
+          name = "ibm-db2u"
+          subscription = {
+            channel = var.channel
+            installPlanApproval = "Automatic"
+            name = "db2u-operator"
+            source = var.catalog
+            sourceNamespace = var.catalog_namespace
           }
         }
       }
+    }
   }
   values_file = "values-${var.server_name}.yaml"
 }
