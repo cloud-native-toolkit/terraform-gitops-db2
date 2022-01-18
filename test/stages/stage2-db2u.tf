@@ -1,4 +1,4 @@
-module "db2" {
+module "db2u" {
   source = "./module"
 
   gitops_config = module.gitops.gitops_config

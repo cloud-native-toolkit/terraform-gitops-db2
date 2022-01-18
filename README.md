@@ -44,16 +44,14 @@ This module makes use of the output from other modules:
 ## Example usage
 
 ```hcl-terraform
-module "dev_tools_argocd" {
-  source = "github.com/cloud-native-toolkit/terraform-tools-argocd.git"
+module "db2u" {
+  source = "./module"
 
-  cluster_config_file = module.dev_cluster.config_file_path
-  cluster_type        = module.dev_cluster.type
-  app_namespace       = module.dev_cluster_namespaces.tools_namespace_name
-  ingress_subdomain   = module.dev_cluster.ingress_hostname
-  olm_namespace       = module.dev_software_olm.olm_namespace
-  operator_namespace  = module.dev_software_olm.target_namespace
-  name                = "argocd"
+  gitops_config = module.gitops.gitops_config
+  git_credentials = module.gitops.git_credentials
+  server_name = module.gitops.server_name
+  catalog = module.cp_catalogs.catalog_ibmoperators
+  platform_navigator_name = module.cp_platform_navigator.name
 }
 ```
 
