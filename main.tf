@@ -15,8 +15,8 @@ locals {
             channel = var.channel
             installPlanApproval = "Automatic"
             name = local.name
-            source = var.source
-            sourceNamespace = var.source_namespace
+            source = var.subscription_source
+            sourceNamespace = var.subscription_source_namespace
           }
         }
       }
