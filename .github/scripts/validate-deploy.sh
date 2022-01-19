@@ -56,7 +56,7 @@ else
 fi
 
 count=0
-until kubectl get subscription "db2u-operator" -n "openshift-operators" || [[ $count -eq 20 ]]; do
+until kubectl get subscription "db2u-operator" -n "openshift-marketplace" || [[ $count -eq 20 ]]; do
   echo "Waiting for subscription/db2u-operator in openshift-operators"
   count=$((count + 1))
   sleep 15

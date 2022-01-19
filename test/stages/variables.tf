@@ -84,5 +84,5 @@ variable "git_username" {
 
 
 variable "operator_namespace" {
-  default = "openshift-marketplace"
+  default = "openshift-operators"
 }
