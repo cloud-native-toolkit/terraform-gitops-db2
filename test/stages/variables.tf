@@ -81,8 +81,3 @@ variable "gitops_namespace" {
 
 variable "git_username" {
 }
-
-
-variable "operator_namespace" {
-  default = "openshift-operators"
-}
