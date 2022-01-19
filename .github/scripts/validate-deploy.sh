@@ -7,7 +7,7 @@ echo "debug gitops-output.json:"
 cat gitops-output.json
 
 export KUBECONFIG=$(cat .kubeconfig)
-NAMESPACE="openshift-operators"
+NAMESPACE=$(jq -r '.namespace // "openshift-operators"' gitops-output.json)
 COMPONENT_NAME=$(jq -r '.name // "db2u-operator"' gitops-output.json)
 BRANCH=$(jq -r '.branch // "main"' gitops-output.json)
 SERVER_NAME=$(jq -r '.server_name // "default"' gitops-output.json)
@@ -16,7 +16,7 @@ TYPE=$(jq -r '.type // "base"' gitops-output.json)
 
 mkdir -p .testrepo
 
-gitops-db2u-operator-ibm-catalogs.yaml
+
 
 git clone https://${GIT_TOKEN}@${GIT_REPO} .testrepo
 
