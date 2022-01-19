@@ -10,7 +10,7 @@ locals {
     "ibm-db2u-operator" = {
       subscriptions = {
         ibmdb2u = {
-          name = "ibm-db2u"
+          name = local.name
           subscription = {
             channel = var.channel
             installPlanApproval = "Automatic"
