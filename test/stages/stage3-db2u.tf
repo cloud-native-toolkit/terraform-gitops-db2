@@ -1,4 +1,9 @@
-module "gitops_module" {
+module "db2u" {
+  depends_on = [
+    module.gitops_ibm_catalogs,
+    module.gitops_cp4d_operator
+  ]
+  
   source = "./module"
 
   gitops_config = module.gitops.gitops_config

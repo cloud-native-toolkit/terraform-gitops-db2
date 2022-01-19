@@ -11,9 +11,15 @@ output "branch" {
   depends_on  = [null_resource.setup_gitops]
 }
 
-output "namespace" {
+output "source_namespace" {
   description = "The namespace where the module will be deployed"
-  value       = local.namespace
+  value       = var.subscription_source_namespace
+  depends_on  = [null_resource.setup_gitops]
+}
+
+output "operator_namespace" {
+  description = "The namespace where the module will be deployed"
+  value       = var.operator_namespace
   depends_on  = [null_resource.setup_gitops]
 }
 
