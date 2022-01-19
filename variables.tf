@@ -85,7 +85,7 @@ variable "subscription_source" {
   default     = "ibm-db2uoperator-catalog"
 }
 
-variable "source_namespace" {
+variable "subscription_source_namespace" {
   type        = string
   description = "The namespace where the catalog has been deployed"
   default     = "openshift-marketplace"
