@@ -9,5 +9,4 @@ module "gitops-bootstrap" {
   sealed_secret_cert  = module.cert.cert
   sealed_secret_private_key = module.cert.private_key
   prefix              = "openshift-operators-db2u-operator"
-  type                = "operators"
 }
