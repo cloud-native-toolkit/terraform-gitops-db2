@@ -79,13 +79,13 @@ variable "server_name" {
   default     = "default"
 }
 
-variable "catalog" {
+variable "source" {
   type        = string
   description = "The catalog source that should be used to deploy the operator"
   default     = "ibm-db2uoperator-catalog"
 }
 
-variable "catalog_namespace" {
+variable "source_namespace" {
   type        = string
   description = "The namespace where the catalog has been deployed"
   default     = "openshift-marketplace"

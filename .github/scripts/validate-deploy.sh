@@ -8,13 +8,15 @@ cat gitops-output.json
 
 export KUBECONFIG=$(cat .kubeconfig)
 NAMESPACE="openshift-operators"
-COMPONENT_NAME=$(jq -r '.name // "ibm-db2u-operator"' gitops-output.json)
+COMPONENT_NAME=$(jq -r '.name // "db2u-operator"' gitops-output.json)
 BRANCH=$(jq -r '.branch // "main"' gitops-output.json)
 SERVER_NAME=$(jq -r '.server_name // "default"' gitops-output.json)
 LAYER=$(jq -r '.layer_dir // "2-services"' gitops-output.json)
 TYPE=$(jq -r '.type // "base"' gitops-output.json)
 
 mkdir -p .testrepo
+
+gitops-db2u-operator-ibm-catalogs.yaml
 
 git clone https://${GIT_TOKEN}@${GIT_REPO} .testrepo
 

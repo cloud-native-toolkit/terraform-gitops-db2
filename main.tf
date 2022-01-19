@@ -1,5 +1,5 @@
 locals {
-  name          = "ibm-db2u-operator"
+  name          = "db2u-operator"
   bin_dir       = module.setup_clis.bin_dir
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   layer = "services"
@@ -14,9 +14,9 @@ locals {
           subscription = {
             channel = var.channel
             installPlanApproval = "Automatic"
-            name = "db2u-operator"
-            source = var.catalog
-            sourceNamespace = var.catalog_namespace
+            name = local.name
+            source = var.source
+            sourceNamespace = var.source_namespace
           }
         }
       }
