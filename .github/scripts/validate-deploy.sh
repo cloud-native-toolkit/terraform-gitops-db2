@@ -3,7 +3,7 @@
 GIT_REPO=$(cat git_repo)
 GIT_TOKEN=$(cat git_token)
 
-echo "debbug gitops-output.json:"
+echo "debug gitops-output.json:"
 cat gitops-output.json
 
 export KUBECONFIG=$(cat .kubeconfig)
