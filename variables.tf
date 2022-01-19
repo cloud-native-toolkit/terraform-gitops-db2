@@ -79,7 +79,7 @@ variable "server_name" {
   default     = "default"
 }
 
-variable "source" {
+variable "subscription_source" {
   type        = string
   description = "The catalog source that should be used to deploy the operator"
   default     = "ibm-db2uoperator-catalog"
