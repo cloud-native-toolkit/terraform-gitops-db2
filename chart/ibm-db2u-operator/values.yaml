@@ -4,7 +4,7 @@
 
 subscriptions:
   ibmdb2u:
-    name: ibm-db2u
+    name: db2u-operator
     subscription:
       channel: v1.1
       installPlanApproval: Automatic
