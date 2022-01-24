@@ -61,12 +61,6 @@ variable "git_credentials" {
   }))
   description = "The credentials for the gitops repo(s)"
 }
-
-variable "namespace" {
-  type        = string
-  description = "The namespace where the application should be deployed"
-}
-
 variable "kubeseal_cert" {
   type        = string
   description = "The certificate/public key used to encrypt the sealed secrets"
@@ -91,10 +85,10 @@ variable "subscription_source_namespace" {
   default     = "openshift-marketplace"
 }
 
-variable "operator_namespace" {
+variable "namespace" {
   type        = string
   description = "The namespace where the operators will be installed"
-  default     = "openshift-operators"
+  #default     = "openshift-operators"
 }
 
 variable "channel" {

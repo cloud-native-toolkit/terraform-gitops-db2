@@ -7,14 +7,14 @@ echo "debug gitops-output.json:"
 cat gitops-output.json
 
 export KUBECONFIG=$(cat .kubeconfig)
-NAMESPACE=$(jq -r '.namespace // "openshift-operators"' gitops-output.json)
+NAMESPACE=$(cat .namespace)
 COMPONENT_NAME=$(jq -r '.name // "db2u-operator"' gitops-output.json)
 BRANCH=$(jq -r '.branch // "main"' gitops-output.json)
 SERVER_NAME=$(jq -r '.server_name // "default"' gitops-output.json)
 LAYER=$(jq -r '.layer_dir // "2-services"' gitops-output.json)
 TYPE=$(jq -r '.type // "base"' gitops-output.json)
 
-mkdir -p .testrepo
+mkdir -p .testrepo 
 
 
 
@@ -56,15 +56,15 @@ else
 fi
 
 count=0
-until kubectl get subscription "db2u-operator" -n "openshift-operators" || [[ $count -eq 20 ]]; do
-  echo "Waiting for subscription/db2u-operator in openshift-operators"
+until kubectl get subscription "db2u-operator" -n ${NAMESPACE} || [[ $count -eq 20 ]]; do
+  echo "Waiting for subscription/db2u-operator in ${NAMESPACE}"
   count=$((count + 1))
   sleep 15
 done
 
 if [[ $count -eq 20 ]]; then
-  echo "Timed out waiting for subscription/db2u-operator in openshift-operators"
-  kubectl get all -n "openshift-operators"
+  echo "Timed out waiting for subscription/db2u-operator in ${NAMESPACE}"
+  kubectl get all -n ${NAMESPACE}
   exit 1
 fi
 
