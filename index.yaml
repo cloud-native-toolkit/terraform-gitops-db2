@@ -44,6 +44,81 @@ versions:
         moduleRef:
           id: namespace
           output: name
+      - name: kubeseal_cert
+        moduleRef:
+          id: gitops
+          output: sealed_secrets_cert
+        type: string
+        description: The certificate/public key used to encrypt the sealed secrets
+        default: ""
+      - name: subscription_source
+        type: string
+        description: The catalog source that should be used to deploy the operator
+        default: ibm-db2uoperator-catalog
+      - name: subscription_source_namespace
+        type: string
+        description: The namespace where the catalog has been deployed
+        default: openshift-marketplace
+      - name: operator_namespace
+        type: string
+        description: The namespace where the operators will be installed
+      - name: channel
+        type: string
+        description: The channel that should be used to deploy the operator
+        default: v1.1
+    version: v1.0.2
+    outputs:
+      - name: name
+        description: The name of the module
+      - name: branch
+        description: The branch where the module config has been placed
+      - name: source_namespace
+        description: The namespace where the module will be deployed
+      - name: operator_namespace
+        description: The namespace where the module will be deployed
+      - name: server_name
+        description: The server where the module will be deployed
+      - name: layer
+        description: The layer where the module is deployed
+      - name: type
+        description: The type of module where the module is deployed
+  - platforms:
+      - kubernetes
+      - ocp3
+      - ocp4
+    dependencies:
+      - id: gitops
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+            version: '>= 1.1.0'
+      - id: namespace
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+            version: '>= 1.0.0'
+    variables:
+      - name: gitops_config
+        moduleRef:
+          id: gitops
+          output: gitops_config
+        type: object({ boostrap = object({ argocd-config = object({ project = string repo = string url = string path = string }) }) infrastructure = object({ argocd-config = object({ project = string repo = string url = string path = string }) payload = object({ repo = string url = string path = string }) }) services = object({ argocd-config = object({ project = string repo = string url = string path = string }) payload = object({ repo = string url = string path = string }) }) applications = object({ argocd-config = object({ project = string repo = string url = string path = string }) payload = object({ repo = string url = string path = string }) }) })
+        description: Config information regarding the gitops repo structure
+      - name: git_credentials
+        moduleRef:
+          id: gitops
+          output: git_credentials
+        type: list(object({ repo = string url = string username = string token = string }))
+        description: The credentials for the gitops repo(s)
+      - name: server_name
+        moduleRef:
+          id: gitops
+          output: server_name
+        type: string
+        description: The name of the server
+        default: default
+      - name: namespace
+        moduleRef:
+          id: namespace
+          output: name
         type: string
         description: The namespace where the operators will be installed
       - name: kubeseal_cert
