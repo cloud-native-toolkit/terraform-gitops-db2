@@ -85,7 +85,7 @@ variable "subscription_source_namespace" {
   default     = "openshift-marketplace"
 }
 
-variable "namespace" {
+variable "operator_namespace" {
   type        = string
   description = "The namespace where the operators will be installed"
   #default     = "openshift-operators"
