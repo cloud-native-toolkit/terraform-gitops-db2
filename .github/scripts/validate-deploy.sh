@@ -7,7 +7,7 @@ echo "debug gitops-output.json:"
 cat gitops-output.json
 
 export KUBECONFIG=$(cat .kubeconfig)
-//NAMESPACE=$(jq -r '.namespace // "openshift-operators"' gitops-output.json)
+#NAMESPACE=$(jq -r '.namespace // "openshift-operators"' gitops-output.json)
 NAMESPACE=$(cat .namespace)
 COMPONENT_NAME=$(jq -r '.name // "db2u-operator"' gitops-output.json)
 BRANCH=$(jq -r '.branch // "main"' gitops-output.json)

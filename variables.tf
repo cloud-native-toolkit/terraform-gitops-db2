@@ -88,7 +88,7 @@ variable "subscription_source_namespace" {
 variable "operator_namespace" {
   type        = string
   description = "The namespace where the operators will be installed"
-  default     = "openshift-operators"
+  #default     = "openshift-operators"
 }
 
 variable "channel" {
