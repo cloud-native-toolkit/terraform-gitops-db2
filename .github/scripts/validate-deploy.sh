@@ -53,7 +53,7 @@ if [[ $count -eq 20 ]]; then
   exit 1
 else
   echo "Found namespace: ${NAMESPACE}. Sleeping for 30 seconds to wait for everything to settle down"
-  sleep 5m
+  sleep 30
 fi
 
 count=0
