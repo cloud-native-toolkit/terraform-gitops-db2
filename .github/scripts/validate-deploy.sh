@@ -8,6 +8,7 @@ cat gitops-output.json
 
 export KUBECONFIG=$(cat .kubeconfig)
 NAMESPACE=$(jq -r '.namespace // "openshift-operators"' gitops-output.json)
+//NAMESPACE=$(cat .namespace)
 COMPONENT_NAME=$(jq -r '.name // "db2u-operator"' gitops-output.json)
 BRANCH=$(jq -r '.branch // "main"' gitops-output.json)
 SERVER_NAME=$(jq -r '.server_name // "default"' gitops-output.json)
@@ -52,7 +53,7 @@ if [[ $count -eq 20 ]]; then
   exit 1
 else
   echo "Found namespace: ${NAMESPACE}. Sleeping for 30 seconds to wait for everything to settle down"
-  sleep 30
+  sleep 5m
 fi
 
 count=0

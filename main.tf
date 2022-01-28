@@ -5,7 +5,7 @@ locals {
   layer = "services"
   type  = "operators"
   application_branch = "main"
-  //namespace = var.operator_namespace
+  namespace = var.operator_namespace
   layer_config = var.gitops_config[local.layer]
   values_content = {
     "ibm-db2u-operator" = {
