@@ -17,9 +17,9 @@ output "source_namespace" {
   depends_on  = [null_resource.setup_gitops]
 }
 
-output "namespace" {
+output "operator_namespace" {
   description = "The namespace where the module will be deployed"
-  value       = var.namespace
+  value       = var.operator_namespace
   depends_on  = [null_resource.setup_gitops]
 }
 

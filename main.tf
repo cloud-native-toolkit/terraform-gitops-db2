@@ -5,7 +5,7 @@ locals {
   layer = "services"
   type  = "operators"
   application_branch = "main"
-  namespace = var.namespace
+  operator_namespace = var.operator_namespace
   layer_config = var.gitops_config[local.layer]
   values_content = {
     "ibm-db2u-operator" = {
@@ -46,7 +46,7 @@ resource null_resource setup_gitops {
   depends_on = [null_resource.create_yaml]
 triggers = {
     name = local.name
-    namespace = var.namespace
+    operator_namespace = var.operator_namespace
     yaml_dir = local.yaml_dir
     server_name = var.server_name
     layer = local.layer
@@ -57,7 +57,7 @@ triggers = {
   }
 
   provisioner "local-exec" {
-    command = "${self.triggers.bin_dir}/igc gitops-module '${self.triggers.name}' -n '${self.triggers.namespace}' --contentDir '${self.triggers.yaml_dir}' --serverName '${self.triggers.server_name}' -l '${self.triggers.layer}' --type '${self.triggers.type}'"
+    command = "${self.triggers.bin_dir}/igc gitops-module '${self.triggers.name}' -n '${self.triggers.operator_namespace}' --contentDir '${self.triggers.yaml_dir}' --serverName '${self.triggers.server_name}' -l '${self.triggers.layer}' --type '${self.triggers.type}'"
 
     environment = {
       GIT_CREDENTIALS = nonsensitive(self.triggers.git_credentials)
@@ -67,7 +67,7 @@ triggers = {
 
   provisioner "local-exec" {
     when = destroy
-    command = "${self.triggers.bin_dir}/igc gitops-module '${self.triggers.name}' -n '${self.triggers.namespace}' --delete --contentDir '${self.triggers.yaml_dir}' --serverName '${self.triggers.server_name}' -l '${self.triggers.layer}' --type '${self.triggers.type}'"
+    command = "${self.triggers.bin_dir}/igc gitops-module '${self.triggers.name}' -n '${self.triggers.operator_namespace}' --delete --contentDir '${self.triggers.yaml_dir}' --serverName '${self.triggers.server_name}' -l '${self.triggers.layer}' --type '${self.triggers.type}'"
 
     environment = {
       GIT_CREDENTIALS = nonsensitive(self.triggers.git_credentials)
