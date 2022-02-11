@@ -57,8 +57,8 @@ else
 fi
 
 count=0
-until kubectl get subscription "ibm-db2oltp-cp4d-operator" -n ${NAMESPACE} || [[ $count -eq 20 ]]; do
-  echo "Waiting for subscription/ibm-db2oltp-cp4d-operator in ${NAMESPACE}"
+until kubectl get subscription "ibm-db2oltp-cp4d-operator-catalog-subscription" -n ${NAMESPACE} || [[ $count -eq 20 ]]; do
+  echo "Waiting for subscription/ibm-db2oltp-cp4d-operator-catalog-subscription in ${NAMESPACE}"
   count=$((count + 1))
   sleep 15
 done
