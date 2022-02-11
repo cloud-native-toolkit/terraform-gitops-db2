@@ -1,6 +1,6 @@
 
 
-/*variable cluster_username { 
+variable cluster_username { 
   type        = string
   description = "The username for AWS access"
 }
@@ -8,7 +8,7 @@
 variable "cluster_password" {
   type        = string
   description = "The password for AWS access"
-}*/
+}
 
 variable "server_url" {
   type        = string
