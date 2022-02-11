@@ -1,5 +1,5 @@
 locals {
-  name          = "db2u-operator"
+  name          = "ibm-db2oltp-cp4d-operator"
   bin_dir       = module.setup_clis.bin_dir
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   layer = "services"
@@ -25,8 +25,6 @@ locals {
   }
   values_file = "values-${var.server_name}.yaml"
 }
-
-
 
 module setup_clis {
   source = "github.com/cloud-native-toolkit/terraform-util-clis.git"

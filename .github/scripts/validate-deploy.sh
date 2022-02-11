@@ -7,8 +7,8 @@ echo "debug gitops-output.json:"
 cat gitops-output.json
 
 export KUBECONFIG=$(cat .kubeconfig)
-NAMESPACE=$(cat .namespace)
-COMPONENT_NAME=$(jq -r '.name // "db2u-operator"' gitops-output.json)
+NAMESPACE="ibm-common-services"
+COMPONENT_NAME=$(jq -r '.name // "ibm-db2oltp-cp4d-operator"' gitops-output.json)
 BRANCH=$(jq -r '.branch // "main"' gitops-output.json)
 SERVER_NAME=$(jq -r '.server_name // "default"' gitops-output.json)
 LAYER=$(jq -r '.layer_dir // "2-services"' gitops-output.json)
