@@ -4,10 +4,10 @@
 
 subscriptions:
   ibmdb2u:
-    name: db2u-operator
+    name: ibm-db2oltp-cp4d-operator-catalog-subscription
     subscription:
-      channel: v1.1
+      channel: v1.0
       installPlanApproval: Automatic
-      name: db2u-operator
+      name: ibm-db2oltp-cp4d-operator
       source: ibm-db2uoperator-catalog
       sourceNamespace: openshift-marketplace

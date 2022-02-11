@@ -76,7 +76,7 @@ variable "server_name" {
 variable "subscription_source" {
   type        = string
   description = "The catalog source that should be used to deploy the operator"
-  default     = "ibm-db2uoperator-catalog"
+  default     = "ibm-operator-catalog"
 }
 
 variable "subscription_source_namespace" {
@@ -88,13 +88,13 @@ variable "subscription_source_namespace" {
 variable "operator_namespace" {
   type        = string
   description = "The namespace where the operators will be installed"
-  #default     = "openshift-operators"
+  default     = "ibm-common-services"
 }
 
 variable "channel" {
   type        = string
   description = "The channel that should be used to deploy the operator"
-  default     = "v1.1"
+  default     = "v1.0"
 }
 
 # variable "platform_navigator_name" {
