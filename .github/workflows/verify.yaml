@@ -38,7 +38,8 @@ jobs:
         run: |
           repo=$(echo ${{ env.GITHUB_REPOSITORY }} | sed -E "s~.*/[^-]+-(.*)~\1~g")
           echo "Repo: $repo"
-          echo "::set-output name=repo::$repo"
+          #echo "::set-output name=repo::$repo"
+          echo "::set-output name=repo::gitops-db2u-operator"  
 
           org="${GIT_ORG:-cloud-native-toolkit-test}"
           echo "Org: $org"
