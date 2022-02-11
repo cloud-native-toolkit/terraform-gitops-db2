@@ -9,5 +9,5 @@ subscriptions:
       channel: v1.0
       installPlanApproval: Automatic
       name: ibm-db2oltp-cp4d-operator
-      source: ibm-db2uoperator-catalog
+      source: ibm-operator-catalog
       sourceNamespace: openshift-marketplace
