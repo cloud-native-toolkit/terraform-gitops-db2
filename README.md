@@ -25,7 +25,7 @@ The module depends on the following software components:
 
 ### Command-line tools
 
-- terraform - v12
+- terraform - > v0.15
 - kubectl
 
 ### Terraform providers
@@ -39,18 +39,24 @@ This module makes use of the output from other modules:
 
 - GitOps - github.com/cloud-native-toolkit/terraform-tools-gitops.git
 - Namespace - github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-- etc
+- gitops_ibm_catalogs - github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
+- gitops_cp4d_operator - github.com/cloud-native-toolkit/terraform-gitops-cp4d-operator.git
 
 ## Example usage
 
 ```hcl-terraform
 module "db2u" {
-  source = "./module"
+  depends_on = [
+    module.gitops_ibm_catalogs,
+    module.gitops_cp4d_operator
+  ]
+  
+  source = "github.com/cloud-native-toolkit/terraform-gitops-db2u-operator.git"
 
   gitops_config = module.gitops.gitops_config
   git_credentials = module.gitops.git_credentials
   server_name = module.gitops.server_name
-  namespace = module.gitops_namespace.name
+  operator_namespace = "ibm-common-services"
   kubeseal_cert = module.gitops.sealed_secrets_cert
 }
 ```
@@ -124,12 +130,13 @@ When a release is created, a repository dispatch is sent out to the repositories
 The module metadata adds extra descriptive information about the module that is used to build out the module catalog.
 
 ```yaml
-name: ""
+name: gitops-db2
 type: gitops
-description: ""
+description: Module to populate a gitops repo with the resources to provision db2
 tags:
   - tools
   - gitops
+softwareProvider: ibm-cp
 versions:
   - platforms:
       - kubernetes
@@ -139,11 +146,19 @@ versions:
       - id: gitops
         refs:
           - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-            version: ">= 1.1.0"
+            version: '>= 1.1.0'
       - id: namespace
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-            version: ">= 1.0.0"
+            version: '>= 1.0.0'
+      - id: gitops_ibm_catalogs
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
+            version: '>= 1.0.0'
+      - id: gitops_cp4d_operator
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-operator.git
+            version: '>= 1.0.0'      
     variables:
       - name: gitops_config
         moduleRef:
