@@ -88,7 +88,7 @@ variable "subscription_source_namespace" {
 variable "operator_namespace" {
   type        = string
   description = "The namespace where the operators will be installed"
-  default     = "ibm-common-services"
+  default     = "cpd-operators"
 }
 
 variable "channel" {
