@@ -55,8 +55,8 @@ module "db2u" {
 
   gitops_config = module.gitops.gitops_config
   git_credentials = module.gitops.git_credentials
-  server_name = module.gitops.server_name
-  operator_namespace ="cpd-operators"
+  server_name = module.gitops.server_name  
+  operator_namespace = "cpd-operators"
   kubeseal_cert = module.gitops.sealed_secrets_cert
 }
 ```
@@ -147,18 +147,18 @@ versions:
         refs:
           - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
             version: '>= 1.1.0'
-      - id: namespace
+      - id: gitops_namespace
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
             version: '>= 1.0.0'
-      - id: gitops_ibm_catalogs
+      - id: gitops-cp-catalogs
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
-            version: '>= 1.0.0'
+            version: '>= 1.2.0'
       - id: gitops_cp4d_operator
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-operator.git
-            version: '>= 1.0.0'      
+            version: '>= 0.0.5'      
     variables:
       - name: gitops_config
         moduleRef:
@@ -172,14 +172,15 @@ versions:
         moduleRef:
           id: gitops
           output: server_name
-      - name: namespace
+      - name: operator_namespace
         moduleRef:
-          id: namespace
-          output: name
+          id: gitops_cp4d_operator
+          output: operator_namespace
       - name: kubeseal_cert
         moduleRef:
           id: gitops
           output: sealed_secrets_cert
+
 ```
 
 - **name** - The `name` field is required and must be unique among the other modules. This value is used to reference the module in the Bill of Materials.
