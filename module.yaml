@@ -14,19 +14,27 @@ versions:
       - id: gitops
         refs:
           - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-            version: '>= 1.1.0'
-      - id: gitops_namespace
+            version: ">= 1.1.0"
+      - id: namespace
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-            version: '>= 1.0.0'
-      - id: gitops-cp-catalogs
+            version: ">= 1.0.0"
+      - id: gitops_ibm_catalogs
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
-            version: '>= 1.2.0'
+            version: ">= 1.0.0"
+      - id: gitops_cp_foundation
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp-foundational-services.git
+            version: ">= 1.0.0"
       - id: gitops_cp4d_operator
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-operator.git
-            version: '>= 0.0.5'      
+            version: ">= 1.0.0"
+      - id: gitops-cp4d-instance
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-instance.git
+            version: ">= 1.0.0"      
     variables:
       - name: gitops_config
         moduleRef:

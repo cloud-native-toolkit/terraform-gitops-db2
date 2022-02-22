@@ -1,3 +1,11 @@
+# Cloud Pak for Data, db2u operator gitops module
+
+Module to provision a gitops repo with the resources necessary to provision a Cloud Pak for data, db2u operator on a cluster. In order to provision db2u operator, the following steps are performed:
+
+1. Add the db2u operator chart to the gitops repo (charts/ibm-db2u-operator)
+
+this module has dependeny to install db2oltp Subscription and Data vertulization etc.
+
 # Starter kit for a Terraform GitOps module
 
 This is a Starter kit to help with the creation of Terraform modules. The basic structure of a Terraform module is fairly
@@ -146,19 +154,27 @@ versions:
       - id: gitops
         refs:
           - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-            version: '>= 1.1.0'
-      - id: gitops_namespace
+            version: ">= 1.1.0"
+      - id: namespace
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-            version: '>= 1.0.0'
-      - id: gitops-cp-catalogs
+            version: ">= 1.0.0"
+      - id: gitops_ibm_catalogs
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
-            version: '>= 1.2.0'
+            version: ">= 1.0.0"
+      - id: gitops_cp_foundation
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp-foundational-services.git
+            version: ">= 1.0.0"
       - id: gitops_cp4d_operator
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-operator.git
-            version: '>= 0.0.5'      
+            version: ">= 1.0.0"
+      - id: gitops-cp4d-instance
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-instance.git
+            version: ">= 1.0.0"      
     variables:
       - name: gitops_config
         moduleRef:
