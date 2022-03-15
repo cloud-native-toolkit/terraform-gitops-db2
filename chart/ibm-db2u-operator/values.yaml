@@ -1,0 +1,19 @@
+# Default values for ibm-ace-operator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: ibm-db2u-operator
+operator_namespace: cpd-operators
+spec:
+  channel: v1.1
+  installPlanApproval: Automatic
+  name: db2u-operator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+
+
+
+
+
+  
+

@@ -1,5 +1,5 @@
 locals {
-  name          = "ibm-db2oltp-cp4d-operator"
+  name          = "ibm-db2u-operator"
   bin_dir       = module.setup_clis.bin_dir
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   layer = "services"
@@ -8,26 +8,17 @@ locals {
   namespace = var.operator_namespace
   layer_config = var.gitops_config[local.layer]
   values_content = {
-    "ibm-db2u-operator" = {
-      subscriptions = {
-        ibmdb2u = {
-          name = local.name
-          subscription = {
-            channel = var.channel
-            installPlanApproval = "Automatic"
-            name = local.name
-            source = var.subscription_source
-            sourceNamespace = var.subscription_source_namespace
-          }
-        }
-      }
-    }
-  }
-  values_file = "values-${var.server_name}.yaml"
+    name = "ibm-db2u-operator"
+    operator_namespace = var.operator_namespace
+    spec = {
+      channel = "v1.1"
+      installPlanApproval = "Automatic"
+      name = "db2u-operator"
+      source = "ibm-operator-catalog"
+      sourceNamespace = "openshift-marketplace"        
+    }       
+  }   
 }
-
-
-
 module setup_clis {
   source = "github.com/cloud-native-toolkit/terraform-util-clis.git"
 }

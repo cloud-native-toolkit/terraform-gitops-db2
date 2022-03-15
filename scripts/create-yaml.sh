@@ -1,6 +1,6 @@
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 MODULE_DIR=$(cd "${SCRIPT_DIR}/.."; pwd -P)
-CHART_DIR=$(cd "${MODULE_DIR}/chart/ibm-db2oltp-cp4d-operator"; pwd -P)
+CHART_DIR=$(cd "${MODULE_DIR}/chart/ibm-db2u-operator"; pwd -P)
 
 NAME="$1"
 DEST_DIR="$2"

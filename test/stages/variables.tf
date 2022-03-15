@@ -77,7 +77,13 @@ variable "kubeseal_namespace" {
 variable "cp_entitlement_key" {
 }
 
-variable "ibmcloud_api_key" {
+variable cluster_username { 
   type        = string
-  description = "The api key for IBM Cloud access"
+  description = "The username for AWS access"
 }
+
+variable "cluster_password" {
+  type        = string
+  description = "The password for AWS access"
+}
+
