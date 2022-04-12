@@ -83,6 +83,97 @@ versions:
         type: string
         description: The channel that should be used to deploy the operator
         default: v1.0
+    version: v1.0.10
+    outputs:
+      - name: name
+        description: The name of the module
+      - name: branch
+        description: The branch where the module config has been placed
+      - name: source_namespace
+        description: The namespace where the module will be deployed
+      - name: operator_namespace
+        description: The namespace where the module will be deployed
+      - name: server_name
+        description: The server where the module will be deployed
+      - name: layer
+        description: The layer where the module is deployed
+      - name: type
+        description: The type of module where the module is deployed
+  - platforms:
+      - kubernetes
+      - ocp3
+      - ocp4
+    dependencies:
+      - id: gitops
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+            version: '>= 1.1.0'
+      - id: namespace
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+            version: '>= 1.0.0'
+      # - id: gitops_ibm_catalogs
+      #   refs:
+      #     - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
+      #       version: ">= 1.0.0"
+      # - id: gitops_cp_foundation
+      #   refs:
+      #     - source: github.com/cloud-native-toolkit/terraform-gitops-cp-foundational-services.git
+      #       version: ">= 1.0.0"
+      # - id: gitops_cp4d_operator
+      #   refs:
+      #     - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-operator.git
+      #       version: ">= 1.0.0"
+      - id: gitops-cp4d-instance
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp4d-instance.git
+            version: '>= 1.0.0'
+    variables:
+      - name: gitops_config
+        moduleRef:
+          id: gitops
+          output: gitops_config
+        type: object({ boostrap = object({ argocd-config = object({ project = string repo = string url = string path = string }) }) infrastructure = object({ argocd-config = object({ project = string repo = string url = string path = string }) payload = object({ repo = string url = string path = string }) }) services = object({ argocd-config = object({ project = string repo = string url = string path = string }) payload = object({ repo = string url = string path = string }) }) applications = object({ argocd-config = object({ project = string repo = string url = string path = string }) payload = object({ repo = string url = string path = string }) }) })
+        description: Config information regarding the gitops repo structure
+      - name: git_credentials
+        moduleRef:
+          id: gitops
+          output: git_credentials
+        type: list(object({ repo = string url = string username = string token = string }))
+        description: The credentials for the gitops repo(s)
+      - name: server_name
+        moduleRef:
+          id: gitops
+          output: server_name
+        type: string
+        description: The name of the server
+        default: default
+      - name: operator_namespace
+        moduleRef:
+          id: gitops_cp4d_operator
+          output: operator_namespace
+        type: string
+        description: The namespace where the operators will be installed
+        default: cpd-operators
+      - name: kubeseal_cert
+        moduleRef:
+          id: gitops
+          output: sealed_secrets_cert
+        type: string
+        description: The certificate/public key used to encrypt the sealed secrets
+        default: ""
+      - name: subscription_source
+        type: string
+        description: The catalog source that should be used to deploy the operator
+        default: ibm-operator-catalog
+      - name: subscription_source_namespace
+        type: string
+        description: The namespace where the catalog has been deployed
+        default: openshift-marketplace
+      - name: channel
+        type: string
+        description: The channel that should be used to deploy the operator
+        default: v1.0
     version: v1.0.9
     outputs:
       - name: name
