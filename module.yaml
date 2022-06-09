@@ -36,10 +36,10 @@ versions:
         moduleRef:
           id: gitops
           output: server_name
-      - name: operator_namespace
-        moduleRef:
-          id: gitops_cp4d_operator
-          output: namespace
+      # - name: operator_namespace
+      #   moduleRef:
+      #     id: gitops_cp4d_operator
+      #     output: namespace
       - name: kubeseal_cert
         moduleRef:
           id: gitops
